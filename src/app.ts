@@ -128,21 +128,20 @@ class ProjectState extends State<Project> {
     );
 
     this.updateListener();
-    
   }
 
-  moveItem(projectId:string,newStatus:ProjectStatus){
-    const project = this.projects.find(project=>project.id===projectId);
-    if(project && project.status !== newStatus){
-        project.status  = newStatus;
-        this.updateListener();
+  moveItem(projectId: string, newStatus: ProjectStatus) {
+    const project = this.projects.find((project) => project.id === projectId);
+    if (project && project.status !== newStatus) {
+      project.status = newStatus;
+      this.updateListener();
     }
   }
 
-  private updateListener(){
+  private updateListener() {
     for (const listener of this.listeners) {
-        listener(this.projects.slice());
-      }
+      listener(this.projects.slice());
+    }
   }
 }
 
@@ -159,7 +158,7 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
     insertAtStart: boolean,
     elementId?: string
   ) {
-    this.template = <HTMLTemplateElement>document.getElementById(templateId)!;
+    this.template = <HTMLTemplateElement>document.getElementById(templateId);
     // get app
     this.hostElement = document.getElementById(hostElementId)! as T;
     // clone the template
